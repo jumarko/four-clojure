@@ -1,2 +1,3 @@
 # four-clojure
-Problems from 4clojure.com
+
+Repository for problem solutions from http://www.4clojure.com/problems implemented in Clojure.
