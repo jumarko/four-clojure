@@ -4,12 +4,7 @@
 
 (defn multiply [x y]
   (letfn [(number->digits [number]
-            (loop [x number
-                   digits '()]
-              (if (pos? x)
-                (recur (quot x 10)
-                       (conj digits (rem x 10)))
-                digits)))]
+            (map #(Integer/parseInt (str %)) (str number)))]
     (let [product (* x y)]
       (number->digits product))))
 
