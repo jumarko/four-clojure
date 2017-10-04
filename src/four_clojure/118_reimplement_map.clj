@@ -10,8 +10,8 @@
           s))
 
 ;; lazy version
-(defn my-map [f s]
-  (when (seq s)
+(defn my-map [f xs]
+  (when-let [s (seq xs)]
     (lazy-seq
      (cons (f (first s)) (my-map f (rest s))))))
 
