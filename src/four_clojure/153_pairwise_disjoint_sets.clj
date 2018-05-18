@@ -5,6 +5,7 @@
 
 (defn pairwise-disjoint-sets?
   [set-of-sets]
+  (apply distinct? (apply concat set-of-sets))
   ;; perhaps more performant but unfinished and more "clever"
   #_(reduce
    (fn [_ s]
@@ -13,12 +14,14 @@
          (reduced false)
          true))
    set-of-sets)
-  (->> set-of-sets
+  #_(->> set-of-sets
        (map (fn [s]
               (map (partial set/intersection s)
                    (disj set-of-sets s))))
        flatten
        (every? empty?)))
+
+#(apply distinct? (apply concat %))
   
 
 (= (pairwise-disjoint-sets? #{#{\U}
