@@ -4,11 +4,8 @@
   See http://www.4clojure.com/problem/70")
 
 (defn sorted-words [sentence]
-  (letfn [(case-insensitive-comp [x y]
-            (compare (clojure.string/upper-case x)
-                     (clojure.string/upper-case y)))]
-    (->> (clojure.string/split sentence #"[^A-Za-z]+")
-         (sort case-insensitive-comp))))
+  (->> (clojure.string/split sentence #"[^A-Za-z]+")
+       (sort-by clojure.string/lower-case)))
 
 (sorted-words "Have a nice day.")
 
