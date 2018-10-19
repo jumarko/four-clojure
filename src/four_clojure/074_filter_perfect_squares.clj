@@ -9,11 +9,10 @@
   (letfn [(perfect-square? [x]
             (let [square-root (int (Math/sqrt x))]
               (= (* square-root square-root) x)))]
-    (let [numbers (map #(Integer/parseInt %)
-                       (clojure.string/split ints-str #","))]
-      (->> numbers
-           (filter perfect-square?)
-           (clojure.string/join ",")))))
+    (->> (re-seq #"\d+" ints-str)
+         (map #(Integer/parseInt %))
+         (filter perfect-square?)
+         (clojure.string/join ","))))
 
 (= (perfect-squares "4,5,6,7,8,9") "4,9")
 
