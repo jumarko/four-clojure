@@ -30,6 +30,14 @@
       longest-seq
       [])))
 
+;;; alternative implementation from leetwinski: http://www.4clojure.com/problem/solutions/53
+(defn longest-increasing-subseq [numbers]
+  (or (->> (range (count numbers) 1 -1)
+           (mapcat #(partition % 1 numbers))
+           (filter #(apply < %))
+           first)
+      []))
+
 ;;; tests
 (t/deftest longest-subseq
   (t/testing "trivial single sequence"
